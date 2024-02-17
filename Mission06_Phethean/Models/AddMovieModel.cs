@@ -7,6 +7,10 @@ namespace Mission06_Phethean.Models
         [Key]
         [Required]
         public int MovieID { get; set; }
+
+        [Required]
+        public string Category { get; set; }
+
         [Required]
         public string Title { get; set; }
 
