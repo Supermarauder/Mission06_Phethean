@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mission06_Phethean.Models;
 using SQLitePCL;
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Mission06_Phethean.Controllers
 {
@@ -23,21 +24,73 @@ namespace Mission06_Phethean.Controllers
         }
         [HttpGet]
         public IActionResult AddNewMovie()
-        { 
-            return View(); 
+        {
+            ViewBag.Category = _context.Categories
+                .ToList();
+
+            return View("AddNewMovie", new AddMovieModel()); 
         }
         [HttpPost]
         public IActionResult AddNewMovie(AddMovieModel response)
         {
-            _context.Movies.Add(response);
-            _context.SaveChanges();
-            return View("Confirmation", response);
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(response);
+                _context.SaveChanges();
+                return View("Confirmation", response);
+            }
+            else
+            {
+                ViewBag.Category = _context.Categories
+                       .ToList();
+
+                return View(response);
+            }
         }
 
-        public IActionResult ViewMovieList()
+        public IActionResult ViewList()
         {
+            //link
+            var movies = _context.Movies
+                .ToList();
 
-            return View();
+            return View(movies);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordToEdit = _context.Movies
+                .Single(x => x.MovieId == id); //goes to look out for one record
+            ViewBag.Category = _context.Categories
+                   .ToList();
+            return View("AddNewMovie", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AddMovieModel updatedInfo)
+        {
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
+            return RedirectToAction("ViewList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _context.Movies
+               .Single(x => x.MovieId == id); //goes to look out for one record
+
+            return View(recordToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(AddMovieModel deletedRecord)
+        {
+            _context.Movies.Remove(deletedRecord);
+            _context.SaveChanges();
+
+            return RedirectToAction("ViewList");
         }
     }
 }
