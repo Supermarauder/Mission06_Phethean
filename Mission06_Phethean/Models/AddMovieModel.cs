@@ -23,11 +23,11 @@ namespace Mission06_Phethean.Models
         public string? Director { get; set; }
         public string? Rating { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please specify if this movie was edited.")]
         public bool Edited { get; set; }
 
         public string? LentTo { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please specify if this movie was copied to plex")]
         public bool CopiedToPlex { get; set; }
 
         [StringLength(25)]

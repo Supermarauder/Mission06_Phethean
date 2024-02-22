@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission06_Phethean.Models;
 using SQLitePCL;
 using System.Diagnostics;
@@ -52,6 +53,7 @@ namespace Mission06_Phethean.Controllers
         {
             //link
             var movies = _context.Movies
+                .Include(m => m.Category)
                 .ToList();
 
             return View(movies);

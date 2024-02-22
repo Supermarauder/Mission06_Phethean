@@ -9,9 +9,8 @@
 <table class="table table-bordered">
     <thead class="fw-bold">
         <tr>
-            <td>Movie ID</td>
-            <td>Category ID</td>
             <td>Title</td>
+            <td>Category</td>
             <td>Year</td>
             <td>Director</td>
             <td>Rating</td>
@@ -26,9 +25,8 @@
     {
         <tbody>
             <tr>
-                <td>@record.MovieId</td>
-                <td>@record.CategoryId</td>
                 <td>@record.Title</td>
+                <td>@record.Category?.CategoryName</td>
                 <td>@record.Year</td>
                 <td>@record.Director</td>
                 <td>@record.Rating</td>
