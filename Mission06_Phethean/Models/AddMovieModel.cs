@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission06_Phethean.Models
 {
@@ -6,10 +7,11 @@ namespace Mission06_Phethean.Models
     {
         [Key]
         [Required]
-        public int MovieID { get; set; }
+        public int MovieId { get; set; }
 
+        [ForeignKey("CategoryId")]
         [Required]
-        public string Category { get; set; }
+        public string CategoryId { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -25,6 +27,8 @@ namespace Mission06_Phethean.Models
         public bool? Edited { get; set; }
 
         public string? LentTo { get; set; }
+
+        public bool? CopiedToPlex { get; set; }
 
         [StringLength(25)]
         public string? Notes { get; set; }

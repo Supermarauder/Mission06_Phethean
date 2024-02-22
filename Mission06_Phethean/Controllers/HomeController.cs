@@ -29,9 +29,15 @@ namespace Mission06_Phethean.Controllers
         [HttpPost]
         public IActionResult AddNewMovie(AddMovieModel response)
         {
-            _context.NewMovie.Add(response);
+            _context.Movies.Add(response);
             _context.SaveChanges();
             return View("Confirmation", response);
+        }
+
+        public IActionResult ViewMovieList()
+        {
+
+            return View();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Mission06_Phethean.Models
         public AddNewMovieContext(DbContextOptions<AddNewMovieContext> options) : base(options)
         {
         }
-        public DbSet<AddMovieModel> NewMovie { get; set; }
+        public DbSet<AddMovieModel> Movies { get; set; }
+        public DbSet<CategoryClass> Categories { get; set; }   
     }
 }
