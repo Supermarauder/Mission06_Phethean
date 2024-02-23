@@ -19,7 +19,7 @@
     </div>
     <div class="form-group">
         <label asp-for="Year">Year:</label>
-        <input asp-for="Year" type="number" class="form-control" min="1888" max="2100" step="1" value="1888" required />
+        <input asp-for="Year" type="number" class="form-control" min="1888" max="2100" step="1" value="" required />
         <span asp-validation-for="Year" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -83,5 +83,7 @@
         <input asp-for="Notes" class="form-control" maxlength="25" />
         <span asp-validation-for="Notes" class="text-danger"></span>
     </div>
+
+    <div asp-validation-summary="All"></div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
